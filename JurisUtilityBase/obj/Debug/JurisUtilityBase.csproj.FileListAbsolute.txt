@@ -1,0 +1,52 @@
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe.config
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csproj.ResolveComReference.cache
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csprojResolveAssemblyReference.cache
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.UtilityBaseMain.resources
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.Properties.Resources.resources
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.SplashScreen.resources
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csproj.GenerateResource.Cache
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe.manifest
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.application
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.pdb
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.C1Report.4.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.Win.C1Input.4.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.Win.C1Report.4.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\Gizmox.Extensions.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\Ionic.Zlib.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisAuthenticator.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisDBO21.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisIDef21.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisStr21.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisStr221.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisSVR21.dll
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.exe.manifest
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.application
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.exe
+C:\Users\haddocdx\Documents\Visual Studio 2012\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.pdb
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe.config
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csproj.ResolveComReference.cache
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.exe
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.pdb
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe.manifest
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.application
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.exe
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\KSN-Retainer Billing.pdb
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.C1Report.4.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.Win.C1Input.4.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\C1.Win.C1Report.4.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\Gizmox.Extensions.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\Ionic.Zlib.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisAuthenticator.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisDBO21.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisIDef21.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisStr21.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisStr221.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\bin\Debug\JurisSVR21.dll
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csprojResolveAssemblyReference.cache
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.UtilityBaseMain.resources
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.Properties.Resources.resources
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.SplashScreen.resources
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\JurisUtilityBase.csproj.GenerateResource.Cache
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.exe.manifest
+D:\Projects\KSN---Retainer-Billing-Utility\JurisUtilityBase\obj\Debug\KSN-Retainer Billing.application
