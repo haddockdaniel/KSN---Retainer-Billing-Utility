@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KSN-Retainer Billing.exe" size="675328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KSN-Retainer Billing.exe" size="675840">
       <assemblyIdentity name="KSN-Retainer Billing" version="2.71.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LEfxZVAlUZU2aMXAQX4lS7/wEJ1L6x/epQnoVg8brOQ=</dsig:DigestValue>
+        <dsig:DigestValue>KzIxJpMPPLEbM3HGm9lt+OEgdmyicYwEW3NIDfFdq/w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

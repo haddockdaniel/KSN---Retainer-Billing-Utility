@@ -93,7 +93,9 @@ namespace JurisUtilityBase
             string sql = "SELECT distinct empname, BillToBillingAtty FROM PreBill " +
                             "inner join billto on billtosysnbr = pbbillto " +
                             "inner join employee on empsysnbr = BillToBillingAtty " +
-                            " where pbstatus = 2";
+                            " inner join prebillmatter on pbmprebill = pbsysnbr " +
+                            " inner join matter on matsysnbr = pbmmatter " +
+                            " where pbstatus = 2 and matbillagreecode = 'R' and matfltfeeorretainer<>0 and matstatusflag='O' ";
             DataSet emp = _jurisUtility.RecordsetFromSQL(sql);
             if (emp == null || emp.Tables[0].Rows.Count == 0)
             {
@@ -223,7 +225,7 @@ cast((retainertoallocate * case when otpct3 is null then '0' when  OTPct3='' the
 
                     string SQL436 = @"insert into timebatchdetail(tbdbatch,tbdrecnbr, tbdrectype, tbdposted, tbddate, tbdprdyear, tbdprdnbr, tbdtkpr, tbdmatter, tbdbudgphase, tbdfeesched, tbdtaskcd, tbdactivitycd,tbdbillableflg,tbdactualhrswrk, tbdhourssource, tbdhourstobill, tbdratesource, tbdrate, tbdamountsource, tbdamount, tbdcode1, tbdcode2, tbdcode3, tbdbillnote, tbdstopwatch, tbdnarrative, tbdid)
                     Select pbbatch, maxrec +1 as Recnbr, 2, 'Y',pbfd, (select prdyear from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0), 
-                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr1.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, case when tkrrate is null then ptrrate else tkrrate end, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
+                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr1.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, 0, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
                     from  prebillmatter
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr1.ToString() + @"' as int) 
@@ -240,7 +242,7 @@ cast('" + Otkpr1.ToString() + "' as int) > 0 and cast('" + Alloc1.ToString() + @
 
                     string SQL46 = @"insert into timebatchdetail(tbdbatch,tbdrecnbr, tbdrectype, tbdposted, tbddate, tbdprdyear, tbdprdnbr, tbdtkpr, tbdmatter, tbdbudgphase, tbdfeesched, tbdtaskcd, tbdactivitycd,tbdbillableflg,tbdactualhrswrk, tbdhourssource, tbdhourstobill, tbdratesource, tbdrate, tbdamountsource, tbdamount, tbdcode1, tbdcode2, tbdcode3, tbdbillnote, tbdstopwatch, tbdnarrative, tbdid)
                     Select pbbatch, maxrec +1 as Recnbr, 2, 'Y',pbfd, (select prdyear from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0), 
-                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr2.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, case when tkrrate is null then ptrrate else tkrrate end, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
+                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr2.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, 0, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
                     from  prebillmatter
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr2.ToString() + @"' as int) 
@@ -257,7 +259,7 @@ cast('" + Otkpr2.ToString() + "' as int) > 0 and cast('" + Alloc2.ToString() + @
 
                     string SQL47 = @"insert into timebatchdetail(tbdbatch,tbdrecnbr, tbdrectype, tbdposted, tbddate, tbdprdyear, tbdprdnbr, tbdtkpr, tbdmatter, tbdbudgphase, tbdfeesched, tbdtaskcd, tbdactivitycd,tbdbillableflg,tbdactualhrswrk, tbdhourssource, tbdhourstobill, tbdratesource, tbdrate, tbdamountsource, tbdamount, tbdcode1, tbdcode2, tbdcode3, tbdbillnote, tbdstopwatch, tbdnarrative, tbdid)
                     Select pbbatch, maxrec +1 as Recnbr, 2, 'Y',pbfd, (select prdyear from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0), 
-                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr3.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, case when tkrrate is null then ptrrate else tkrrate end, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
+                    (select prdnbr from actngperiod where prdstartdate<=pbfd and prdenddate>=pbfd and prdnbr<>0),cast('" + Otkpr3.ToString() + @"' as int),cast('" + MatSys.ToString() + @"' as int), 0, matfeesch, null,null, 'Y', 0,'W',0,3, 0, 3, 0, '','','','',0,'', (select max(tbdid) + 1 from timebatchdetail)
                     from  prebillmatter
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr3.ToString() + @"' as int) 
@@ -363,6 +365,7 @@ from (select pbfmatter, pbfprebill,  sum(pbfamtonbill) as amt from prebillfeeite
             inner join prebillmatter on pbmmatter=utmatter
             inner join prebillfeeitem on pbfutbatch=utbatch and pbfutrecnbr=utrecnbr
             inner join matter on pbmmatter=matsysnbr
+inner join billto on billtosysnbr = matbillto
             inner join (select morigmat, max(case when rnk=1 then morigatty else '' end) as morig1, max(case when rnk=2 then morigatty else null end) as morig2, max(case when rnk=3 then morigatty else null end) as morig3
             , max(case when rnk=4 then morigatty else null end) as morig4, max(case when rnk=1 then empinitials else null end) as OT1, max(case when rnk=2 then empinitials else null end) as OT2
             , max(case when rnk=3 then empinitials else null end) as OT3, max(case when rnk=4 then empinitials else null end) as OT4, max(case when rnk=1 then cast(morigpcnt as int) else null end) as OTpct1
@@ -374,13 +377,13 @@ from (select pbfmatter, pbfprebill,  sum(pbfamtonbill) as amt from prebillfeeite
             inner join matter on morigmat=matsysnbr
             inner join billto on matbillto=billtosysnbr)MO
             group by morigmat)MOrig on morigmat=matsysnbr
-            where matbillagreecode='R' and matfltfeeorretainer<>0 and matstatusflag='O'
-            ) UT
+            where matbillagreecode='R' and matfltfeeorretainer<>0 and matstatusflag='O' and billtobillingatty = " + billToAttyEmpSys 
+           + @" ) UT
             inner join matter on matsysnbr=utmatter
             inner join client on matclinbr=clisysnbr
             inner join billto on matbillto=billtosysnbr 
             inner join prebill on prebill=pbsysnbr
-            where pbstatus=2 and matbillagreecode='R' and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
+            where pbstatus=2 and matbillagreecode='R'  " +
             "  and (cast(billtobillingatty as varchar(20))<>cast(morig1 as varchar(20))  or " +
             " cast(case when morig2 is null then '' else morig2 end as varchar(20))>'') " +
            "  group by matsysnbr, matfltfeeorretainer, ot1, ot2, ot3, ot4, otpct1, otpct2, otpct3, otpct4, prebill, clicode, matcode, matreportingname, clireportingname,morig1, morig2, morig3, morig4,  billtobillingatty " +
