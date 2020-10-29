@@ -54,11 +54,11 @@ namespace JurisUtilityBase
         public void LoadCompanies()
         {
             var companies = _jurisUtility.Companies.Cast<object>().Cast<Instance>().ToList();
-//            listBoxCompanies.SelectedIndexChanged -= listBoxCompanies_SelectedIndexChanged;
+            //            listBoxCompanies.SelectedIndexChanged -= listBoxCompanies_SelectedIndexChanged;
             listBoxCompanies.ValueMember = "Code";
             listBoxCompanies.DisplayMember = "Key";
             listBoxCompanies.DataSource = companies;
-//            listBoxCompanies.SelectedIndexChanged += listBoxCompanies_SelectedIndexChanged;
+            //            listBoxCompanies.SelectedIndexChanged += listBoxCompanies_SelectedIndexChanged;
             var defaultCompany = companies.FirstOrDefault(c => c.Default == Instance.JurisDefaultCompany.jdcJuris);
             if (companies.Count > 0)
             {
@@ -95,12 +95,14 @@ namespace JurisUtilityBase
                             "inner join employee on empsysnbr = BillToBillingAtty " +
                             " inner join prebillmatter on pbmprebill = pbsysnbr " +
                             " inner join matter on matsysnbr = pbmmatter " +
-                            " where pbstatus = 2 and matbillagreecode = 'R' and matfltfeeorretainer<>0 and matstatusflag='O' ";
+                            " where pbstatus <= 2 and matbillagreecode = 'R' and matfltfeeorretainer<>0 and matstatusflag='O' ";
             DataSet emp = _jurisUtility.RecordsetFromSQL(sql);
             if (emp == null || emp.Tables[0].Rows.Count == 0)
-            {
-                MessageBox.Show("There are no prebills to process", "No processing", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-            }
+            {  MessageBox.Show("There are no prebills to process", "No processing", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                      }
+
+
+            
             else
             {
                 comboBox1.ValueMember = "BillToBillingAtty";
@@ -171,17 +173,18 @@ cast((retainertoallocate * case when otpct3 is null then '0' when  OTPct3='' the
             inner join client on matclinbr=clisysnbr
             inner join billto on matbillto=billtosysnbr 
             inner join prebill on prebill=pbsysnbr
-            where pbstatus=2 and matbillagreecode='R' and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
+            where pbstatus<=2 and matbillagreecode='R' and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
             " and (cast(billtobillingatty as varchar(20))<>cast(morig1 as varchar(20))  or " +
             " cast(case when morig2 is null then '' else morig2 end as varchar(20))>'')  " +
             " group by prebill, billtobillingatty, matsysnbr, matfltfeeorretainer,  morig1, morig2, morig3, morig4, ot1, ot2, ot3, ot4, otpct1, otpct2, otpct3, otpct4 " +
             " ) AllocTbl order by prebill";
 
             DataSet PBRS = _jurisUtility.RecordsetFromSQL(SQLSel);
+
             int counter;
-        
+
             int rowCount = PBRS.Tables[0].Rows.Count;
-           
+
             string Prebill = "";
             string MatSys = "";
             string Btkpr = "";
@@ -230,8 +233,8 @@ cast((retainertoallocate * case when otpct3 is null then '0' when  OTPct3='' the
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr1.ToString() + @"' as int) 
                     left outer join perstyprate on ptrfeesch=matfeesch and ptrprstyp=(select empprstyp from employee where empsysnbr=cast('" + Otkpr1.ToString() + @"' as int)) , 
-(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem where pbfstatus='I' ) as pbfd
- from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem where pbfstatus='I'  )  group by tbdbatch) PBatch 
+(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem) as pbfd
+ from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem )  group by tbdbatch) PBatch 
 where  cast('" + Otkpr1.ToString() + @"' as int) is not null and
 cast('" + Otkpr1.ToString() + "' as int) > 0 and cast('" + Alloc1.ToString() + @"' as money) <> 0
   and cast('" + Alloc1.ToString() + "' as money) is not null and pbmmatter = cast('" + MatSys.ToString() + @"' as int)
@@ -247,13 +250,13 @@ cast('" + Otkpr1.ToString() + "' as int) > 0 and cast('" + Alloc1.ToString() + @
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr2.ToString() + @"' as int) 
                     left outer join perstyprate on ptrfeesch=matfeesch and ptrprstyp=(select empprstyp from employee where empsysnbr=cast('" + Otkpr2.ToString() + @"' as int)) , 
-(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem where pbfstatus='I' ) as pbfd
- from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem where pbfstatus='I'  )  group by tbdbatch) PBatch 
+(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem ) as pbfd
+ from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem   )  group by tbdbatch) PBatch 
 where  cast('" + Otkpr2.ToString() + @"' as int) is not null and
 cast('" + Otkpr2.ToString() + "' as int) > 0 and cast('" + Alloc2.ToString() + @"' as money) <> 0
   and cast('" + Alloc2.ToString() + "' as money) is not null and pbmmatter = cast('" + MatSys.ToString() + @"' as int)
   and  pbmprebill = cast('" + Prebill.ToString() + "' as int)  ";
-                   
+
 
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL46);
 
@@ -264,8 +267,8 @@ cast('" + Otkpr2.ToString() + "' as int) > 0 and cast('" + Alloc2.ToString() + @
                     inner join matter on pbmmatter=matsysnbr
                     left outer join tkprrate on tkrfeesch=matfeesch and tkremp=cast('" + Otkpr3.ToString() + @"' as int) 
                     left outer join perstyprate on ptrfeesch=matfeesch and ptrprstyp=(select empprstyp from employee where empsysnbr=cast('" + Otkpr3.ToString() + @"' as int)) , 
-(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem where pbfstatus='I' ) as pbfd
- from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem where pbfstatus='I' )  group by tbdbatch) PBatch 
+(select tbdbatch as pbbatch, max(tbdrecnbr) as maxrec, (select max(pbfdateonbill) from prebillfeeitem  ) as pbfd
+ from timebatchdetail     where tbdbatch=(select max(pbfutbatch) from prebillfeeitem   )  group by tbdbatch) PBatch 
 where  cast('" + Otkpr3.ToString() + @"' as int) is not null and
 cast('" + Otkpr3.ToString() + "' as int) > 0 and cast('" + Alloc3.ToString() + @"' as money) <> 0
   and cast ('" + Alloc3.ToString() + "' as money) is not null and pbmmatter = cast('" + MatSys.ToString() + @"' as int)
@@ -275,14 +278,14 @@ cast('" + Otkpr3.ToString() + "' as int) > 0 and cast('" + Alloc3.ToString() + @
                     string SQL44 = @"Insert into unbilledtime(utbatch, utrecnbr, utmatter, utbudgphase,utdate, utprdyear, utprdnbr, uttkpr, utfeesched, uttaskcd, utactivitycd, utbillableflg,utactualhrswrk,uthourssource, uthourstobill, utratesource, utrate, utamountsource, utamount, utstdrate, utamtatstdrate, utnarrative,utid, utpostdate, utpostin, utcode1, utcode2, utcode3, utbillnote)
                     select tbdbatch, tbdrecnbr, tbdmatter, tbdbudgphase, tbddate, tbdprdyear, tbdprdnbr, tbdtkpr, tbdfeesched, tbdtaskcd, tbdactivitycd,tbdbillableflg,tbdactualhrswrk, tbdhourssource, tbdhourstobill, tbdratesource, tbdrate,tbdamountsource, tbdamount, tbdrate, tbdamount, tbdnarrative, tbdid, tbddate, -1, tbdcode1, tbdcode2, tbdcode3,tbdbillnote
                     from timebatchdetail,(select pbfutbatch as pbbatch, max(pbfutrecnbr) as maxrec, max(pbfdateonbill) as pbfd
- from prebillfeeitem      where pbfstatus = 'I' and pbfutbatch=(select max(pbfutbatch) from prebillfeeitem where pbfstatus='I'  )  group by pbfutbatch) PBatch
+ from prebillfeeitem  where pbfutbatch=(select max(pbfutbatch) from prebillfeeitem)  group by pbfutbatch) PBatch
                     where tbdmatter=cast('" + MatSys.ToString() + @"' as int) and tbdbatch=pbbatch and tbdrecnbr>maxrec";
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL44);
 
                     string SQL121 = @"Insert into prebillfeeitem(pbfprebill, pbfmatter, pbftkpronbill, pbfutbatch, pbfutrecnbr, pbfstatus, pbfdateonbill, pbfhrsonbill, pbfrateonbill, pbfamtonbill, pbfseqonbill)
                 Select cast('" + Prebill.ToString() + "' as int), cast('" + MatSys.ToString() + "' as int), uttkpr, utbatch, utrecnbr, 'I',utdate, utactualhrswrk, 0, 0, case when (select max(pbfseqonbill) from prebillfeeitem where pbfprebill=cast('" + Prebill.ToString() + "' as int)) is null then Rank() over (order by utrecnbr) -1 else  (select max(pbfseqonbill)  from prebillfeeitem where pbfprebill=cast('" + Prebill.ToString() + @"' as int)) + Rank() over (order by utrecnbr) end
                 from unbilledtime,(select pbfutbatch as pbbatch, max(pbfutrecnbr) as maxrec, max(pbfdateonbill) as pbfd
- from prebillfeeitem      where pbfstatus = 'I' and pbfutbatch=(select max(pbfutbatch) from prebillfeeitem where pbfstatus='I'  )  group by pbfutbatch) PBatch
+ from prebillfeeitem    where pbfutbatch=(select max(pbfutbatch) from prebillfeeitem)  group by pbfutbatch) PBatch
                 where utmatter=cast('" + MatSys.ToString() + "' as int) and utbatch=pbbatch and utrecnbr>maxrec";
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL121);
 
@@ -294,7 +297,7 @@ cast('" + Otkpr3.ToString() + "' as int) > 0 and cast('" + Alloc3.ToString() + @
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL33);
 
                     string SQL34 = @"update prebillfeeitem set pbfamtonbill=(pbfamtonbill - cast('" + Rd.ToString() + @"' as money)) from matter where pbfprebill=cast('" + Prebill.ToString() + "' as int) and cast('" + Rd.ToString() + @"' as money)>0 and cast('" + Rd.ToString() + @"' as money)  is not null and pbftkpronbill=cast('" + Otkpr2.ToString() + "' as int) and pbfstatus='I'";
-                    _jurisUtility.ExecuteNonQueryCommand(0,SQL34);
+                    _jurisUtility.ExecuteNonQueryCommand(0, SQL34);
 
 
                     string SQL13 = @"insert into prebillfeerecap(pbfrprebill, pbfrmatter, pbfrtkpronbill, pbfrhrsonbill, pbframtonbill, pbfrppdapplied,pbfrtrustapplied)
@@ -330,7 +333,7 @@ where pbfrmatter=pbfmatter and pbfprebill=pbfrprebill and pbfrtkpronbill=pbftkpr
 from (select pbfmatter, pbfprebill,  sum(pbfamtonbill) as amt from prebillfeeitem inner join matter on pbfmatter=matsysnbr where matbillagreecode='R' and pbfprebill=cast('" + Prebill.ToString() + "' as int)  and pbfmatter=cast('" + MatSys.ToString() + @"' as int) group by pbfmatter, pbfprebill)PB where  pbmmatter=pbfmatter and pbmprebill=pbfprebill ";
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL17);
 
-                  
+
 
                     string SQL20 = "update prebill set pbstatus=4, pbaction=1 where pbsysnbr=cast('" + Prebill.ToString() + "' as int)";
                     _jurisUtility.ExecuteNonQueryCommand(0, SQL20);
@@ -377,13 +380,13 @@ inner join billto on billtosysnbr = matbillto
             inner join matter on morigmat=matsysnbr
             inner join billto on matbillto=billtosysnbr)MO
             group by morigmat)MOrig on morigmat=matsysnbr
-            where matbillagreecode='R' and matfltfeeorretainer<>0 and matstatusflag='O' and billtobillingatty = " + billToAttyEmpSys 
+            where matbillagreecode='R' and matfltfeeorretainer<>0 and matstatusflag='O' and billtobillingatty = " + billToAttyEmpSys
            + @" ) UT
             inner join matter on matsysnbr=utmatter
             inner join client on matclinbr=clisysnbr
             inner join billto on matbillto=billtosysnbr 
             inner join prebill on prebill=pbsysnbr
-            where pbstatus=2 and matbillagreecode='R'  " +
+            where pbstatus<=2 and matbillagreecode='R'  " +
             "  and (cast(billtobillingatty as varchar(20))<>cast(morig1 as varchar(20))  or " +
             " cast(case when morig2 is null then '' else morig2 end as varchar(20))>'') " +
            "  group by matsysnbr, matfltfeeorretainer, ot1, ot2, ot3, ot4, otpct1, otpct2, otpct3, otpct4, prebill, clicode, matcode, matreportingname, clireportingname,morig1, morig2, morig3, morig4,  billtobillingatty " +
@@ -412,6 +415,8 @@ inner join billto on billtosysnbr = matbillto
             Cursor.Current = Cursors.Default;
             Application.DoEvents();
         }
+
+
 
         private bool VerifyFirmName()
         {
@@ -458,7 +463,7 @@ inner join billto on billtosysnbr = matbillto
             double retNum;
 
             bool isNum = Double.TryParse(Convert.ToString(Expression), System.Globalization.NumberStyles.Any, System.Globalization.NumberFormatInfo.InvariantInfo, out retNum);
-            return isNum; 
+            return isNum;
         }
 
         private void WriteLog(string comment)
@@ -483,7 +488,7 @@ inner join billto on billtosysnbr = matbillto
         /// <param name="status">status text to display</param>
         /// <param name="step">steps completed</param>
         /// <param name="steps">total steps to be done</param>
-   
+
         private void DeleteLog()
         {
             string AppDir = Path.GetDirectoryName(Application.ExecutablePath);
@@ -512,7 +517,7 @@ inner join billto on billtosysnbr = matbillto
                 File.Copy(filePathName + ".ark1", filePathName + ".ark2");
                 File.Delete(filePathName + ".ark1");
             }
-            if (File.Exists(filePathName ))
+            if (File.Exists(filePathName))
             {
                 File.Copy(filePathName, filePathName + ".ark1");
                 File.Delete(filePathName);
@@ -520,7 +525,7 @@ inner join billto on billtosysnbr = matbillto
 
         }
 
-            
+
 
         private void LogFile(string LogLine)
         {
@@ -529,14 +534,17 @@ inner join billto on billtosysnbr = matbillto
             using (StreamWriter sw = File.AppendText(filePathName))
             {
                 sw.WriteLine(LogLine);
-            }	
+            }
         }
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            DoDaFix();
-        }
+        {           
+              
+                DoDaFix(); 
+
+        
+    }
 
         private void btn_Prebill_Click(object sender, EventArgs e)
         {
@@ -590,30 +598,62 @@ group by morigmat)MOrig on morigmat=matsysnbr
 inner join matter on matsysnbr=utmatter
 inner join client on matclinbr=clisysnbr
 inner join prebill on prebill=pbsysnbr
-where pbstatus=2 and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
+where pbstatus<=2 and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
 " group by prebill , CliCode  , dbo.jfn_formatmattercode(matcode) , clireportingname , matreportingname , matfltfeeorretainer, ot1, ot2, ot3, ot4, otpct1, otpct2, otpct3, otpct4 " + 
 " ) AllocTbl order by prebill";
 
             DataSet myRS = _jurisUtility.RecordsetFromSQL(SQLPB);
-    
+         
 
-            dataGridView1.AutoGenerateColumns = true;
- 
-            dataGridView1.DataSource = myRS.Tables[0];
+                dataGridView1.AutoGenerateColumns = true;
 
-            toolStripStatusLabel.Text = "Ready to Process Prebills....";
-            statusStrip.Refresh();
+                dataGridView1.DataSource = myRS.Tables[0];
 
-            Cursor.Current = Cursors.Default;
-            Application.DoEvents();
+                toolStripStatusLabel.Text = "Ready to Process Prebills....";
+                statusStrip.Refresh();
 
+                Cursor.Current = Cursors.Default;
+                Application.DoEvents();
+            }
 
-        }
+        
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             billToAttyEmpSys = comboBox1.SelectedValue.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string s2 = "update prebill set pbstatus=2, pbaction=0 where pbsysnbr=" + tbPrebill.Text.ToString();
+
+            _jurisUtility.ExecuteNonQuery(0, s2);
+
+            MessageBox.Show(tbPrebill.ToString() + " has been reset to ready to edit status.","Prebill Status", MessageBoxButtons.OK);
+
+            string sql = "SELECT distinct empname, BillToBillingAtty FROM PreBill " +
+                      "inner join billto on billtosysnbr = pbbillto " +
+                      "inner join employee on empsysnbr = BillToBillingAtty " +
+                      " inner join prebillmatter on pbmprebill = pbsysnbr " +
+                      " inner join matter on matsysnbr = pbmmatter " +
+                      " where pbstatus <= 2 and matbillagreecode = 'R' and matfltfeeorretainer<>0 and matstatusflag='O' ";
+            DataSet emp = _jurisUtility.RecordsetFromSQL(sql);
+            if (emp == null || emp.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("There are no prebills to process", "No processing", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
+
+
+
+            else
+            {
+                comboBox1.ValueMember = "BillToBillingAtty";
+                comboBox1.DisplayMember = "empname";
+                comboBox1.DataSource = emp.Tables[0];
+            }
+
+        }
+    
     }
 }

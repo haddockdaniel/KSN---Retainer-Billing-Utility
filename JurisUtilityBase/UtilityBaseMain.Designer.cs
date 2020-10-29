@@ -39,6 +39,9 @@
             this.btn_Prebill = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tbPrebill = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +60,7 @@
             this.toolStripStatusLabel.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(134, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(135, 17);
             this.toolStripStatusLabel.Text = "Status: Ready to Execute";
             // 
             // listBoxCompanies
@@ -136,6 +139,34 @@
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(996, 89);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(174, 38);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Reset Prebill Status";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tbPrebill
+            // 
+            this.tbPrebill.Location = new System.Drawing.Point(907, 107);
+            this.tbPrebill.Name = "tbPrebill";
+            this.tbPrebill.Size = new System.Drawing.Size(84, 20);
+            this.tbPrebill.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(826, 114);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Prebill Number";
+            // 
             // UtilityBaseMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,6 +174,9 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1250, 675);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbPrebill);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Prebill);
@@ -176,6 +210,9 @@
         private System.Windows.Forms.Button btn_Prebill;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbPrebill;
+        private System.Windows.Forms.Label label2;
     }
 }
 
