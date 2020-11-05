@@ -598,7 +598,7 @@ group by morigmat)MOrig on morigmat=matsysnbr
 inner join matter on matsysnbr=utmatter
 inner join client on matclinbr=clisysnbr
 inner join prebill on prebill=pbsysnbr
-where pbstatus<=2 and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
+where pbstatus<=2  and matbillagreecode = 'R' and matfltfeeorretainer<>0 and matstatusflag='O'  and pbbillto in (select billtosysnbr from billto where billtobillingatty = " + billToAttyEmpSys + ") " +
 " group by prebill , CliCode  , dbo.jfn_formatmattercode(matcode) , clireportingname , matreportingname , matfltfeeorretainer, ot1, ot2, ot3, ot4, otpct1, otpct2, otpct3, otpct4 " + 
 " ) AllocTbl order by prebill";
 
